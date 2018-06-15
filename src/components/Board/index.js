@@ -6,11 +6,12 @@ class Board extends Component {
     super(props);
 
     this.state = {
-      rows: this.creatBoard(props)
+      rows: this.createBoard(props)
+      // rows: 1000
     };
   }
 
-  creatBoard = props => {
+  createBoard = props => {
     let board = []; //defines the board array
 
     for (let i = 0; i < props.rows; i++) {
@@ -47,13 +48,24 @@ class Board extends Component {
       // console.log(cell);
     }
 
-    console.log(board);
+    // console.log(board);
+    return board;
   };
 
   render() {
+    let rows = this.state.rows.map((row,index)=>{
+      return(
+        <Row 
+          cells={row}
+          key={index}
+        />
+      )
+    })
+
+
     return (
-      <div>
-        <h1>Board</h1>
+      <div className="board">
+       {rows}
       </div>
     );
   }
